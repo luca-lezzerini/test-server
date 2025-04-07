@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Data
-public class RespSliceDto<T> extends RispostaConStatusDto {
+public class RespSliceDto<T> extends ResponseWithStatusDto {
     
     private Slice<T> slice;
     
@@ -15,7 +15,7 @@ public class RespSliceDto<T> extends RispostaConStatusDto {
         this.slice = slice;
         setStatus(Collections.emptyList());
     }
-    public RespSliceDto(Slice<T> slice, List<MetadatoStatus> status) {
+    public RespSliceDto(Slice<T> slice, List<ServerStatus> status) {
         this.slice = slice;
         setStatus(status);
     }

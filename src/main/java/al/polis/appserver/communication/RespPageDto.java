@@ -8,11 +8,11 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class RespPageDto<T> extends RispostaConStatusDto {
+public class RespPageDto<T> extends ResponseWithStatusDto {
 
     private Page<T> page;
 
-    public RespPageDto(Page<T> page, List<MetadatoStatus> status) {
+    public RespPageDto(Page<T> page, List<ServerStatus> status) {
         this.page = page;
     }
 

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Data
-public class RespSingleDto<T> extends RispostaConStatusDto {
+public class RespSingleDto<T> extends ResponseWithStatusDto {
 
     private T data;
 
@@ -18,24 +18,13 @@ public class RespSingleDto<T> extends RispostaConStatusDto {
         setStatus(Collections.emptyList());
     }
 
-    public RespSingleDto(T data, List<MetadatoStatus> lista) {
+    public RespSingleDto(T data, List<ServerStatus> lista) {
         this.data = data;
         setStatus(lista);
     }
 
-    public RespSingleDto(List<MetadatoStatus> lista) {
+    public RespSingleDto(List<ServerStatus> lista) {
         setStatus(lista);
-    }
-
-    public RespSingleDto(T data, List<MetadatoStatus> lista, List<MetadatoStatusApplicativo> appMessage) {
-        this.data = data;
-        setStatus(lista);
-        setStatusApplicativo(appMessage);
-    }
-
-    public RespSingleDto(List<MetadatoStatus> lista, List<MetadatoStatusApplicativo> appMessage) {
-        setStatus(lista);
-        setStatusApplicativo(appMessage);
     }
 
 }
