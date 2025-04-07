@@ -13,7 +13,7 @@ import java.util.List;
 public class CourseController {
     @PostMapping("/upsertCourse")
     @ResponseBody
-    public RespSingleDto<CourseDto> upsertCourse(@RequestBody CourseDto Course) {
+    public RespSingleDto<CourseDto> upsertCourse(@RequestBody CourseDto course) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -25,13 +25,13 @@ public class CourseController {
 
     @PostMapping("/deleteCourse")
     @ResponseBody
-    public RespSingleDto<Void> deleteCourse(@RequestBody LongIdDto CourseId) {
+    public RespSingleDto<Void> deleteCourse(@RequestBody LongIdDto courseId) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @PostMapping("/upsertCourse")
     @ResponseBody
-    public RespSingleDto<CourseDto> getCourse(@RequestBody LongIdDto CourseId) {
+    public RespSingleDto<CourseDto> getCourse(@RequestBody LongIdDto courseId) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

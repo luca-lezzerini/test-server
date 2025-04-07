@@ -26,7 +26,7 @@ public class TeacherController {
 
     @PostMapping("/deleteTeacher")
     @ResponseBody
-    public RespSingleDto<Void> deleteTeacher(@RequestBody LongIdDto TeacherId) {
+    public RespSingleDto<Void> deleteTeacher(@RequestBody LongIdDto teacherId) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -44,7 +44,7 @@ public class TeacherController {
 
     @PostMapping("/upsertTeacher")
     @ResponseBody
-    public RespSingleDto<TeacherDto> getTeacher(@RequestBody LongIdDto TeacherId) {
+    public RespSingleDto<TeacherDto> getTeacher(@RequestBody LongIdDto teacherId) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
