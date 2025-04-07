@@ -1,50 +1,50 @@
 package al.polis.appserver.controller;
 
 import al.polis.appserver.communication.RespSingleDto;
-import al.polis.appserver.dto.CourseStudentAssocDto;
+import al.polis.appserver.dto.CourseTeacherAssocDto;
 import al.polis.appserver.dto.LongIdDto;
 import al.polis.appserver.dto.SimpleStringFilterDto;
-import al.polis.appserver.dto.StudentDto;
+import al.polis.appserver.dto.TeacherDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-public class StudentController {
-    @PostMapping("/upsertStudent")
+public class TeacherController {
+    @PostMapping("/upsertTeacher")
     @ResponseBody
-    public RespSingleDto<StudentDto> upsertStudent(@RequestBody StudentDto student) {
+    public RespSingleDto<TeacherDto> upsertTeacher(@RequestBody TeacherDto Teacher) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @PostMapping("/filterStudents")
+    @PostMapping("/filterTeachers")
     @ResponseBody
-    public RespSingleDto<List<StudentDto>> filterStudents(@RequestBody SimpleStringFilterDto filter) {
+    public RespSingleDto<List<TeacherDto>> filterTeachers(@RequestBody SimpleStringFilterDto filter) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @PostMapping("/deleteStudent")
+    @PostMapping("/deleteTeacher")
     @ResponseBody
-    public RespSingleDto<Void> deleteStudent(@RequestBody LongIdDto studentId) {
+    public RespSingleDto<Void> deleteTeacher(@RequestBody LongIdDto TeacherId) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @PostMapping("/associateToCourse")
     @ResponseBody
-    public RespSingleDto<Void> associateToCourse(@RequestBody CourseStudentAssocDto assoc) {
+    public RespSingleDto<Void> associateToCourse(@RequestBody CourseTeacherAssocDto assoc) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @PostMapping("/removeFromCourse")
     @ResponseBody
-    public RespSingleDto<Void> removeFromCourse(@RequestBody CourseStudentAssocDto assoc) {
+    public RespSingleDto<Void> removeFromCourse(@RequestBody CourseTeacherAssocDto assoc) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @PostMapping("/upsertStudent")
+    @PostMapping("/upsertTeacher")
     @ResponseBody
-    public RespSingleDto<StudentDto> getStudent(@RequestBody LongIdDto studentId) {
+    public RespSingleDto<TeacherDto> getTeacher(@RequestBody LongIdDto TeacherId) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
