@@ -9,14 +9,14 @@ import java.time.Instant;
 @Slf4j
 public class ServerStatus {
 
-    private Integer code;
-    private Integer severity;
+    private ServerErrorEnum code;
+    private ErrorSeverityEnum severity;
     private String message;
     private String action;
     private String helpReference;
     private String traceId = "Java - Trace ID Not Available";
 
-    public ServerStatus(Integer code, Integer severity, String message, String action) {
+    public ServerStatus(ServerErrorEnum code, ErrorSeverityEnum severity, String message, String action) {
         this.code = code;
         this.severity = severity;
         this.message = message;
@@ -29,7 +29,7 @@ public class ServerStatus {
         traceId = Long.toHexString(Instant.now().toEpochMilli());
     }
 
-    public ServerStatus(Integer code, Integer severity, String message, String action, String helpReference) {
+    public ServerStatus(ServerErrorEnum code, ErrorSeverityEnum severity, String message, String action, String helpReference) {
         this.code = code;
         this.severity = severity;
         this.message = message;
@@ -39,18 +39,18 @@ public class ServerStatus {
     }
 
     public ServerStatus(ServerErrorEnum error) {
-        this.severity = error.getSeverity().getCode();
+        this.severity = error.getSeverity();
         this.message = error.getMessage();
         this.action = error.getAction();
         populateTraceId();
     }
 
     public static ServerStatus createUnknownError() {
-        return new ServerStatus(-1, 5, "Unknown error", "Contact technical support", "");
+        return new ServerStatus(ServerErrorEnum.UNKNOWN_ERROR);
     }
 
     public static ServerStatus createNoError() {
-        return new ServerStatus(0, 0, "Ok", "", "");
+        return new ServerStatus(ServerErrorEnum.OK);
     }
     
 }

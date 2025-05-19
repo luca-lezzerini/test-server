@@ -1,51 +1,91 @@
 package al.polis.appserver.controller;
 
+import al.polis.appserver.communication.ErrorContext;
 import al.polis.appserver.communication.RespSingleDto;
-import al.polis.appserver.dto.CourseStudentAssocDto;
-import al.polis.appserver.dto.LongIdDto;
-import al.polis.appserver.dto.SimpleStringFilterDto;
-import al.polis.appserver.dto.StudentDto;
+import al.polis.appserver.communication.RespSliceDto;
+import al.polis.appserver.dto.*;
+import al.polis.appserver.service.StudentService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin("*")
+@AllArgsConstructor
+@Slf4j
 public class StudentController {
+    private final StudentService studentService;
+
     @PostMapping("/upsertStudent")
     @ResponseBody
     public RespSingleDto<StudentDto> upsertStudent(@RequestBody StudentDto student) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        StudentDto res = null;
+        try {
+            res = studentService.upsertStudent(student);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(res, ErrorContext.readAndClean());
     }
 
     @PostMapping("/filterStudents")
     @ResponseBody
-    public RespSingleDto<List<StudentDto>> filterStudents(@RequestBody SimpleStringFilterDto filter) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public RespSliceDto<StudentDto> filterStudents(@RequestBody SimpleStringFilterDto filter) {
+        Slice<StudentDto> res = null;
+        try {
+            res = studentService.filterStudents(filter);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSliceDto<>(res, ErrorContext.readAndClean());
     }
 
     @PostMapping("/deleteStudent")
     @ResponseBody
     public RespSingleDto<Void> deleteStudent(@RequestBody LongIdDto studentId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            studentService.deleteStudent(studentId);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(null, ErrorContext.readAndClean());
     }
 
-    @PostMapping("/associateToCourse")
+    @PostMapping("/associateStudentToCourse")
     @ResponseBody
-    public RespSingleDto<Void> associateToCourse(@RequestBody CourseStudentAssocDto assoc) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public RespSingleDto<Void> associateStudentToCourse(@RequestBody CourseStudentAssocDto assoc) {
+        try {
+            studentService.associateStudentToCourse(assoc);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(null, ErrorContext.readAndClean());
     }
 
-    @PostMapping("/removeFromCourse")
+    @PostMapping("/removeStudentFromCourse")
     @ResponseBody
-    public RespSingleDto<Void> removeFromCourse(@RequestBody CourseStudentAssocDto assoc) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public RespSingleDto<Void> removeStudentFromCourse(@RequestBody CourseStudentAssocDto assoc) {
+        try {
+            studentService.removeStudentFromCourse(assoc);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(null, ErrorContext.readAndClean());
     }
 
-    @PostMapping("/upsertStudent")
+    @PostMapping("/getStudent")
     @ResponseBody
     public RespSingleDto<StudentDto> getStudent(@RequestBody LongIdDto studentId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        StudentDto res = null;
+        try {
+            res = studentService.getStudent(studentId);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(res, ErrorContext.readAndClean());
     }
 
 }

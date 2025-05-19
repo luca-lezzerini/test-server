@@ -3,6 +3,7 @@ package al.polis.appserver.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -20,4 +21,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String serialNumber;
+
+    @ManyToOne
+    private Course course;
 }

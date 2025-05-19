@@ -1,9 +1,11 @@
 package al.polis.appserver.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import al.polis.appserver.model.Student;
+import al.polis.appserver.model.Teacher;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 public class CourseDto {
@@ -12,4 +14,6 @@ public class CourseDto {
     private String title;
     private String description;
     private Integer year;
+    private Teacher teacher;
+    private List<StudentDto> students;
 }

@@ -1,51 +1,72 @@
 package al.polis.appserver.controller;
 
+import al.polis.appserver.communication.ErrorContext;
 import al.polis.appserver.communication.RespSingleDto;
-import al.polis.appserver.dto.CourseTeacherAssocDto;
-import al.polis.appserver.dto.LongIdDto;
-import al.polis.appserver.dto.SimpleStringFilterDto;
-import al.polis.appserver.dto.TeacherDto;
+import al.polis.appserver.communication.RespSliceDto;
+import al.polis.appserver.dto.*;
+import al.polis.appserver.mapper.TeacherMapper;
+import al.polis.appserver.service.TeacherService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin("*")
+@AllArgsConstructor
+@Slf4j
 public class TeacherController {
+
+    private final TeacherService teacherService;
+    private final TeacherMapper teacherMapper;
+
     @PostMapping("/upsertTeacher")
     @ResponseBody
-    public RespSingleDto<TeacherDto> upsertTeacher(@RequestBody TeacherDto Teacher) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public RespSingleDto<TeacherDto> upsertTeacher(@RequestBody TeacherDto teacher) {
+        TeacherDto res = null;
+        try {
+            res = teacherService.upsertTeacher(teacher);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(res, ErrorContext.readAndClean());
     }
 
     @PostMapping("/filterTeachers")
     @ResponseBody
-    public RespSingleDto<List<TeacherDto>> filterTeachers(@RequestBody SimpleStringFilterDto filter) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public RespSliceDto<TeacherDto> filterTeachers(@RequestBody SimpleStringFilterDto filter) {
+        Slice<TeacherDto> res = null;
+        try {
+            res = teacherService.filterTeachers(filter);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSliceDto<>(res, ErrorContext.readAndClean());
     }
 
     @PostMapping("/deleteTeacher")
     @ResponseBody
     public RespSingleDto<Void> deleteTeacher(@RequestBody LongIdDto teacherId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            teacherService.deleteTeacher(teacherId);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(null, ErrorContext.readAndClean());
     }
 
-    @PostMapping("/associateToCourse")
-    @ResponseBody
-    public RespSingleDto<Void> associateToCourse(@RequestBody CourseTeacherAssocDto assoc) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @PostMapping("/removeFromCourse")
-    @ResponseBody
-    public RespSingleDto<Void> removeFromCourse(@RequestBody CourseTeacherAssocDto assoc) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @PostMapping("/upsertTeacher")
+    @PostMapping("/getTeacher")
     @ResponseBody
     public RespSingleDto<TeacherDto> getTeacher(@RequestBody LongIdDto teacherId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        TeacherDto res = null;
+        try {
+            res = teacherService.getTeacher(teacherId);
+        } catch (Exception ex){
+            log.error(ex.getMessage(), ex);
+        }
+        return new RespSingleDto<>(res, ErrorContext.readAndClean());
     }
 
 }

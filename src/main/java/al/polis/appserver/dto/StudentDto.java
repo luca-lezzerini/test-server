@@ -1,9 +1,6 @@
 package al.polis.appserver.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.*;
+import lombok.Data;
 
 @Data
 public class StudentDto {
@@ -11,4 +8,5 @@ public class StudentDto {
     private String firstName;
     private String lastName;
     private String serialNumber;
+    private CourseDto course;
 }
